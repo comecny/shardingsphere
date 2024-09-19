@@ -42,5 +42,6 @@
         <module>sql92</module>
         <module>p6spy</module>
         <module>testcontainers</module>
+        <module>db2</module>
     </modules>
 </project>

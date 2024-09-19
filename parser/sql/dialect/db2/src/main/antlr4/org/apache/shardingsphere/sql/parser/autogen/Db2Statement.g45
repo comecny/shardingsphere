@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 
- grammar Db2Statement;
+grammar Db2Statement;
+
+import DMLStatement;
 
  execute
      : (select
