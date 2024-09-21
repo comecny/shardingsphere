@@ -102,3 +102,15 @@ INTERVAL_LITERAL_
     : 'INTERVAL' SPACES? '\'' INTERVAL_VALUE SPACES? INTERVAL_UNIT '\''
     | 'INTERVAL' SPACES? '"' INTERVAL_VALUE SPACES? INTERVAL_UNIT '"'
     ;
+
+STRING_LITERAL
+    : '\'' (~['\\] | '\\' .)* '\''
+    ;
+
+NUMERIC_LITERAL
+    : [0-9]+ ('.' [0-9]+)?
+    ;
+
+ID_
+    : [a-zA-Z_] [a-zA-Z0-9_]*
+   ;

@@ -72,11 +72,11 @@ CEILING
     ;
 
 CHAR_LENGTH
-    : C H A R _ L E N G T H
+    : C H A R UL_ L E N G T H
     ;
 
 CHARACTER_LENGTH
-    : C H A R A C T E R _ L E N G T H
+    : C H A R A C T E R UL_ L E N G T H
     ;
 
 CLOB
@@ -108,11 +108,11 @@ CORRESPONDING
     ;
 
 COVAR_POP
-    : C O V A R _ P O P
+    : C O V A R UL_ P O P
     ;
 
 COVAR_SAMP
-    : C O V A R _ S A M P
+    : C O V A R UL_ S A M P
     ;
 
 CUBE
@@ -120,19 +120,19 @@ CUBE
     ;
 
 CUME_DIST
-    : C U M E _ D I S T
+    : C U M E UL_ D I S T
     ;
 
 CURRENT_DEFAULT_TRANSFORM_GROUP
-    : C U R R E N T _ D E F A U L T _ T R A N S F O R M _ G R O U P
+    : C U R R E N T UL_ D E F A U L T UL_ T R A N S F O R M UL_ G R O U P
     ;
 
 CURRENT_ROLE
-    : C U R R E N T _ R O L E
+    : C U R R E N T UL_ R O L E
     ;
 
 CURRENT_TRANSFORM_GROUP_FOR_TYPE
-    : C U R R E N T _ T R A N S F O R M _ G R O U P _ F O R _ T Y P E
+    : C U R R E N T UL_ T R A N S F O R M UL_ G R O U P UL_ F O R UL_ T Y P E
     ;
 
 DEC
@@ -280,7 +280,7 @@ NUMERIC
     ;
 
 OCTET_LENGTH
-    : O C T E T _ L E N G T H
+    : O C T E T UL_ L E N G T H
     ;
 
 ONLY
@@ -296,15 +296,15 @@ OVERLAY
     ;
 
 PERCENT_RANK
-    : P E R C E N T _ R A N K
+    : P E R C E N T UL_ R A N K
     ;
 
 PERCENTILE_CONT
-    : P E R C E N T I L E _ C O N T
+    : P E R C E N T I L E UL_ C O N T
     ;
 
 PERCENTILE_DISC
-    : P E R C E N T I L E _ D I S C
+    : P E R C E N T I L E UL_ D I S C
     ;
 
 POWER
@@ -324,39 +324,35 @@ REF
     ;
 
 REGR_AVGX
-    : R E G R _ A V G X
+    : R E G R UL_ A V G X
     ;
 
 REGR_AVGY
-    : R E G R _ A V G Y
+    : R E G R UL_ A V G Y
     ;
 
 REGR_COUNT
-    : R E G R _ C O U N T
+    : R E G R UL_ C O U N T
     ;
 
 REGR_INTERCEPT
-    : R E G R _ I N T E R C E P T
-    ;
-
-REGR_R2
-    : R E G R _ R 2
+    : R E G R UL_ I N T E R C E P T
     ;
 
 REGR_SLOPE
-    : R E G R _ S L O P E
+    : R E G R UL_ S L O P E
     ;
 
 REGR_SXX
-    : R E G R _ S X X
+    : R E G R UL_ S X X
     ;
 
 REGR_SXY
-    : R E G R _ S X Y
+    : R E G R UL_ S X Y
     ;
 
 REGR_SYY
-    : R E G R _ S Y Y
+    : R E G R UL_ S Y Y
     ;
 
 ROLLUP
@@ -376,7 +372,7 @@ SMALLINT
     ;
 
 SPECIFICTYPE
-    : S P E C I F I C _ T Y P E
+    : S P E C I F I C UL_ T Y P E
     ;
 
 SQLEXCEPTION
@@ -396,11 +392,11 @@ SQRT
     ;
 
 STDDEV_POP
-    : S T D D E V _ P O P
+    : S T D D E V UL_ P O P
     ;
 
 STDDEV_SAMP
-    : S T D D E V _ S A M P
+    : S T D D E V UL_ S A M P
     ;
 
 SUBMULTISET
@@ -420,11 +416,11 @@ TABLESAMPLE
     ;
 
 TIMEZONE_HOUR
-    : T I M E Z O N E _ H O U R
+    : T I M E Z O N E UL_ H O U R
     ;
 
 TIMEZONE_MINUTE
-    : T I M E Z O N E _ M I N U T E
+    : T I M E Z O N E UL_ M I N U T E
     ;
 
 TRAILING
@@ -464,11 +460,11 @@ UPPER
     ;
 
 VAR_POP
-    : V A R _ P O P
+    : V A R UL_ P O P
     ;
 
 VAR_SAMP
-    : V A R _ S A M P
+    : V A R UL_ S A M P
     ;
 
 VARBINARY
@@ -484,7 +480,7 @@ VARYING
     ;
 
 WIDTH_BUCKET
-    : W I D T H _ B U C K E T
+    : W I D T H UL_ B U C K E T
     ;
 
 WINDOW

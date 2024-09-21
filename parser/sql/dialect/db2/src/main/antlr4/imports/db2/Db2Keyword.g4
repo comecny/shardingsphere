@@ -240,7 +240,7 @@ COUNT
     ;
 
 COUNT_BIG
-    : C O U N T _ B I G
+    : C O U N T UL_ B I G
     ;
 
 CREATE
@@ -256,39 +256,39 @@ CURRENT
     ;
 
 CURRENT_DATE
-    : C U R R E N T _ D A T E
+    : C U R R E N T UL_ D A T E
     ;
 
 CURRENT_LC_CTYPE
-    : C U R R E N T _ L C _ C T Y P E
+    : C U R R E N T UL_ L C UL_ C T Y P E
     ;
 
 CURRENT_PATH
-    : C U R R E N T _ P A T H
+    : C U R R E N T UL_ P A T H
     ;
 
 CURRENT_SCHEMA
-    : C U R R E N T _ S C H E M A
+    : C U R R E N T UL_ S C H E M A
     ;
 
 CURRENT_SERVER
-    : C U R R E N T _ S E R V E R
+    : C U R R E N T UL_ S E R V E R
     ;
 
 CURRENT_TIME
-    : C U R R E N T _ T I M E
+    : C U R R E N T UL_ T I M E
     ;
 
 CURRENT_TIMESTAMP
-    : C U R R E N T _ T I M E S T A M P
+    : C U R R E N T UL_ T I M E S T A M P
     ;
 
 CURRENT_TIMEZONE
-    : C U R R E N T _ T I M E Z O N E
+    : C U R R E N T UL_ T I M E Z O N E
     ;
 
 CURRENT_USER
-    : C U R R E N T _ U S E R
+    : C U R R E N T UL_ U S E R
     ;
 
 CURSOR
@@ -328,15 +328,15 @@ DAYS
     ;
 
 DB2GENERAL
-    : D B 2 G E N E R A L
+    : 'D' 'B2' 'G' 'E' 'N' 'E' 'R' 'A' 'L'
     ;
 
 DB2GENRL
-    : D B 2 G E N R L
+    : 'D' 'B2' 'G' 'E' 'N' 'R' 'L'
     ;
 
 DB2SQL
-    : D B 2 S Q L
+    : 'D' 'B2' 'S' 'Q' 'L'
     ;
 
 DBINFO
@@ -380,7 +380,7 @@ DENSERANK
     ;
 
 DENSE_RANK
-    : D E N S E _ R A N K
+    : D E N S E UL_ R A N K
     ;
 
 DESCRIBE
@@ -459,10 +459,6 @@ END
     : E N D
     ;
 
-END-EXEC
-    : E N D - E X E C
-    ;
-
 ENDING
     : E N D I N G
     ;
@@ -520,7 +516,7 @@ FINAL
     ;
 
 FIRST1
-    : F I R S T 1
+    : 'F' 'I' 'R' 'S' 'T1'
     ;
 
 FREE
@@ -560,7 +556,7 @@ GLOBAL
     ;
 
 GO_TO
-    : G O _ T O
+    : G O UL_ T O
     ;
 
 GRANT
@@ -704,11 +700,11 @@ LANGUAGE
     ;
 
 LAST3
-    : L A S T 3
+    : 'L' 'A' 'S' 'T3'
     ;
 
 LC_CTYPE
-    : L C _ C T Y P E
+    : L C UL_ C T Y P E
     ;
 
 LEAVE
@@ -800,7 +796,7 @@ NOTNULL
     ;
 
 NOT2
-    : N O T 2
+    : 'N' 'O' 'T2'
     ;
 
 NULL
@@ -824,7 +820,7 @@ OLD
     ;
 
 OLD_TABLE
-    : O L D _ T A B L E
+    : O L D UL_ T A B L E
     ;
 
 ON
@@ -972,7 +968,7 @@ RESULT
     ;
 
 RESULT_SET_LOCATOR
-    : R E S U L T _ S E T _ L O C A T O R
+    : R E S U L T UL_ S E T UL_ L O C A T O R
     ;
 
 REVOKE
@@ -1036,7 +1032,7 @@ SESSION
     ;
 
 SESSION_USER
-    : S E S S I O N _ U S E R
+    : S E S S I O N UL_ U S E R
     ;
 
 SET
@@ -1136,7 +1132,7 @@ SYSTEM
     ;
 
 SYSTEM_USER
-    : S Y S T E M _ U S E R
+    : S Y S T E M UL_ U S E R
     ;
 
 TABLE

@@ -17,12 +17,13 @@
 
 grammar Db2Statement;
 
-import DMLStatement;
+import Comments, DMLStatement;
 
- execute
-     : (select
-     | insert
-     | update
-     | delete
-     ) SEMI_? EOF
-     ;
+execute
+    : (select
+    | insert
+    | update
+    | delete
+    | truncateTable
+    ) SEMI_? EOF
+    ;
