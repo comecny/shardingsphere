@@ -7,16 +7,16 @@ import org.apache.shardingsphere.sql.parser.spi.DialectSQLParserFacade;
 /**
  * SQL parser facade for DB2.
  */
-public final class DB2ParserFacade implements DialectSQLParserFacade {
+public final class Db2ParserFacade implements DialectSQLParserFacade {
 
     @Override
     public Class<? extends SQLLexer> getLexerClass() {
-        return DB2Lexer.class;
+        return Db2Lexer.class;
     }
 
     @Override
     public Class<? extends SQLParser> getParserClass() {
-        return DB2Parser.class;
+        return Db2Parser.class;
     }
 
     @Override

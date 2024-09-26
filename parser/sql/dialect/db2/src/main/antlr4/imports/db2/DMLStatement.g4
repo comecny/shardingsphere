@@ -92,7 +92,11 @@ truncation
     ;
 
 selectStatement
-    : SELECT selectList FROM tableSource (WHERE whereClause)? (GROUP BY groupByClause)? (HAVING havingClause)? (ORDER BY orderByClause)?
+    : SELECT selectList fromClause? (WHERE whereClause)? (GROUP BY groupByClause)? (HAVING havingClause)? (ORDER BY orderByClause)?
+    ;
+
+fromClause
+    : FROM tableSource
     ;
 
 tableSource

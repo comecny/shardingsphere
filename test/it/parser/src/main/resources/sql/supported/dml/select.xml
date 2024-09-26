@@ -283,4 +283,5 @@
     <sql-case id="select_with_reserved_word_with_table_ref" value="select xxx.condition from xxx" db-types="MySQL,Doris"/>
     <sql-case id="select_with_reserved_word" value="select describe from xxx" db-types="MySQL,Doris"/>
     <sql-case id="select_with_nvl_function_and_interval_hour" value="SELECT * FROM t_order t WHERE t.CREATE_TIME &lt;= nvl(END_TIME, sysdate) - INTERVAL ? HOUR AND t.STATUS = 'FAILURE'" db-types="Oracle"/>
+    <sql-case id="select_with_db2" value="SELECT de FROM t1" db-types="Db2" />
 </sql-cases>

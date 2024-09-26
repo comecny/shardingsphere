@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-org.apache.shardingsphere.infra.database.db2.type.DB2DatabaseType
+org.apache.shardingsphere.infra.database.db2.type.Db2DatabaseType

@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-org.apache.shardingsphere.sql.parser.db2.vistor.statement.DB2StatementVisitorFacade
+org.apache.shardingsphere.sql.parser.db2.vistor.statement.Db2StatementVisitorFacade

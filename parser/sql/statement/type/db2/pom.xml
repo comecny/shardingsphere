@@ -20,24 +20,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.apache.shardingsphere</groupId>
-        <artifactId>shardingsphere-parser-sql-statement</artifactId>
+        <artifactId>shardingsphere-parser-sql-statement-type</artifactId>
         <version>5.5.1-SNAPSHOT</version>
     </parent>
-    <artifactId>shardingsphere-parser-sql-statement-type</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>shardingsphere-parser-sql-statement-db2</artifactId>
     <name>${project.artifactId}</name>
-    
-    <modules>
-        <module>clickhouse</module>
-        <module>doris</module>
-        <module>hive</module>
-        <module>mysql</module>
-        <module>opengauss</module>
-        <module>oracle</module>
-        <module>postgresql</module>
-        <module>presto</module>
-        <module>sql92</module>
-        <module>sqlserver</module>
-        <module>db2</module>
-    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-parser-sql-statement-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

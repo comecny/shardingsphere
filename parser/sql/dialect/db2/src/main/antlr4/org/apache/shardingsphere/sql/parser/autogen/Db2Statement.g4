@@ -25,5 +25,6 @@ execute
     | update
     | delete
     | truncateTable
-    ) SEMI_? EOF
+    ) (SEMI_ EOF? | EOF)
+    | EOF
     ;

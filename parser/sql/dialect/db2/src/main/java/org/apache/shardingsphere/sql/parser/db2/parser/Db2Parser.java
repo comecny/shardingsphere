@@ -10,9 +10,9 @@ import org.apache.shardingsphere.sql.parser.core.ParseASTNode;
 /**
  * SQL SQLParser for DB2.
  */
-public final class DB2Parser extends Db2StatementParser implements SQLParser {
+public final class Db2Parser extends Db2StatementParser implements SQLParser {
 
-    public DB2Parser(final TokenStream input) {
+    public Db2Parser(final TokenStream input) {
         super(input);
     }
 

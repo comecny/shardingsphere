@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-org.apache.shardingsphere.sql.parser.db2.parser.DB2ParserFacade
+org.apache.shardingsphere.sql.parser.db2.parser.Db2ParserFacade

@@ -82,6 +82,11 @@
             <artifactId>shardingsphere-parser-sql-statement-sqlserver</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-parser-sql-statement-db2</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         
         <dependency>
             <groupId>org.antlr</groupId>

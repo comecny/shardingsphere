@@ -9555,4 +9555,13 @@
             </expr>
         </where>
     </select>
+
+    <select sql-case-id="select_with_db2">
+        <projections start-index="7" stop-index="14">
+            <column-projection name="describe" start-index="7" stop-index="14" />
+        </projections>
+        <from start-index="21" stop-index="23">
+            <simple-table name="xxx" start-index="21" stop-index="23"/>
+        </from>
+    </select>
 </sql-parser-test-cases>

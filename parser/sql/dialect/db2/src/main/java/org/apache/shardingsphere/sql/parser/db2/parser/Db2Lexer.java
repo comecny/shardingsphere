@@ -7,9 +7,9 @@ import org.apache.shardingsphere.sql.parser.autogen.Db2StatementLexer;
 /**
  * SQL lexer for DB2.
  */
-public final class DB2Lexer extends Db2StatementLexer implements SQLLexer {
+public final class Db2Lexer extends Db2StatementLexer implements SQLLexer {
 
-    public DB2Lexer(final CharStream input) {
+    public Db2Lexer(final CharStream input) {
         super(input);
     }
 }
