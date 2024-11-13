@@ -201,8 +201,7 @@ public final class DatabaseConnector implements DatabaseBackendHandler {
     
     private ExecutionContext generateExecutionContext() {
         ShardingSphereMetaData metaData = contextManager.getMetaDataContexts().getMetaData();
-        return new KernelProcessor().generateExecutionContext(
-                queryContext, metaData.getGlobalRuleMetaData(), metaData.getProps(), databaseConnectionManager.getConnectionSession().getConnectionContext());
+        return new KernelProcessor().generateExecutionContext(queryContext, metaData.getGlobalRuleMetaData(), metaData.getProps());
     }
     
     private boolean isNeedImplicitCommitTransaction(final SQLStatement sqlStatement, final boolean multiExecutionUnits) {
@@ -315,7 +314,7 @@ public final class DatabaseConnector implements DatabaseBackendHandler {
     }
     
     private MergedResult mergeQuery(final SQLStatementContext sqlStatementContext, final List<QueryResult> queryResults) throws SQLException {
-        MergeEngine mergeEngine = new MergeEngine(contextManager.getMetaDataContexts().getMetaData().getGlobalRuleMetaData(),
+        MergeEngine mergeEngine = new MergeEngine(contextManager.getMetaDataContexts().getMetaData(),
                 database, contextManager.getMetaDataContexts().getMetaData().getProps(), databaseConnectionManager.getConnectionSession().getConnectionContext());
         return mergeEngine.merge(queryResults, sqlStatementContext);
     }
@@ -334,11 +333,15 @@ public final class DatabaseConnector implements DatabaseBackendHandler {
     }
     
     private boolean isNeedAccumulate() {
-        Collection<DataNodeRuleAttribute> ruleAttributes = database.getRuleMetaData().getAttributes(DataNodeRuleAttribute.class);
         Collection<String> tableNames = queryContext.getSqlStatementContext() instanceof TableAvailable
                 ? ((TableAvailable) queryContext.getSqlStatementContext()).getTablesContext().getTableNames()
                 : Collections.emptyList();
-        return !ruleAttributes.isEmpty() && ruleAttributes.iterator().next().isNeedAccumulate(tableNames);
+        for (DataNodeRuleAttribute each : database.getRuleMetaData().getAttributes(DataNodeRuleAttribute.class)) {
+            if (each.isNeedAccumulate(tableNames)) {
+                return true;
+            }
+        }
+        return false;
     }
     
     /**

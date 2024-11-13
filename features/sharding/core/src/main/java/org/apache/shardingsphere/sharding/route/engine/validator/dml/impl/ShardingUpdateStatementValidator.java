@@ -27,7 +27,7 @@ import org.apache.shardingsphere.infra.route.context.RouteContext;
 import org.apache.shardingsphere.sharding.exception.syntax.DMLMultipleDataNodesWithLimitException;
 import org.apache.shardingsphere.sharding.exception.syntax.UnsupportedUpdatingShardingValueException;
 import org.apache.shardingsphere.sharding.route.engine.condition.ShardingConditions;
-import org.apache.shardingsphere.sharding.route.engine.type.standard.ShardingStandardRoutingEngine;
+import org.apache.shardingsphere.sharding.route.engine.type.standard.ShardingStandardRouteEngine;
 import org.apache.shardingsphere.sharding.route.engine.validator.dml.ShardingDMLStatementValidator;
 import org.apache.shardingsphere.sharding.rule.ShardingRule;
 import org.apache.shardingsphere.sql.parser.statement.core.statement.dml.UpdateStatement;
@@ -41,8 +41,8 @@ import java.util.Optional;
 public final class ShardingUpdateStatementValidator extends ShardingDMLStatementValidator {
     
     @Override
-    public void preValidate(final ShardingRule shardingRule, final SQLStatementContext sqlStatementContext, final List<Object> params, final ShardingSphereDatabase database,
-                            final ConfigurationProperties props) {
+    public void preValidate(final ShardingRule shardingRule, final SQLStatementContext sqlStatementContext, final HintValueContext hintValueContext,
+                            final List<Object> params, final ShardingSphereDatabase database, final ConfigurationProperties props) {
         validateMultipleTable(shardingRule, sqlStatementContext);
     }
     
@@ -53,7 +53,7 @@ public final class ShardingUpdateStatementValidator extends ShardingDMLStatement
         String tableName = updateStatementContext.getTablesContext().getTableNames().iterator().next();
         UpdateStatement updateStatement = updateStatementContext.getSqlStatement();
         Optional<ShardingConditions> shardingConditions = createShardingConditions(sqlStatementContext, shardingRule, updateStatement.getSetAssignment().getAssignments(), params);
-        Optional<RouteContext> setAssignmentRouteContext = shardingConditions.map(optional -> new ShardingStandardRoutingEngine(tableName, optional, sqlStatementContext,
+        Optional<RouteContext> setAssignmentRouteContext = shardingConditions.map(optional -> new ShardingStandardRouteEngine(tableName, optional, sqlStatementContext,
                 hintValueContext, props).route(shardingRule));
         if (setAssignmentRouteContext.isPresent() && !isSameRouteContext(routeContext, setAssignmentRouteContext.get())) {
             throw new UnsupportedUpdatingShardingValueException(tableName);

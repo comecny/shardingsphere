@@ -26,6 +26,7 @@ import org.apache.shardingsphere.infra.database.mysql.type.MySQLDatabaseType;
 import org.apache.shardingsphere.infra.exception.generic.UnsupportedSQLOperationException;
 import org.apache.shardingsphere.sql.parser.statement.core.segment.dml.combine.CombineSegment;
 import org.apache.shardingsphere.sql.parser.statement.core.segment.dml.item.ShorthandProjectionSegment;
+import org.apache.shardingsphere.sql.parser.statement.core.segment.generic.bound.ColumnSegmentBoundInfo;
 import org.apache.shardingsphere.sql.parser.statement.core.value.identifier.IdentifierValue;
 import org.junit.jupiter.api.Test;
 
@@ -57,20 +58,16 @@ class EncryptSelectProjectionSupportedCheckerTest {
         when(sqlStatementContext.getSqlStatement().getCombine().isPresent()).thenReturn(true);
         CombineSegment combineSegment = mock(CombineSegment.class, RETURNS_DEEP_STUBS);
         when(sqlStatementContext.getSqlStatement().getCombine().get()).thenReturn(combineSegment);
-        ColumnProjection orderIdColumn = new ColumnProjection("o", "order_id", null, new MySQLDatabaseType());
-        orderIdColumn.setOriginalTable(new IdentifierValue("t_order"));
-        orderIdColumn.setOriginalColumn(new IdentifierValue("order_id"));
-        ColumnProjection userIdColumn = new ColumnProjection("o", "user_id", null, new MySQLDatabaseType());
-        userIdColumn.setOriginalTable(new IdentifierValue("t_order"));
-        userIdColumn.setOriginalColumn(new IdentifierValue("user_id"));
+        ColumnProjection orderIdColumn = new ColumnProjection(new IdentifierValue("o"), new IdentifierValue("order_id"), null, new MySQLDatabaseType(),
+                null, null, new ColumnSegmentBoundInfo(new IdentifierValue(""), new IdentifierValue(""), new IdentifierValue("t_order"), new IdentifierValue("order_id")));
+        ColumnProjection userIdColumn = new ColumnProjection(new IdentifierValue("o"), new IdentifierValue("user_id"), null, new MySQLDatabaseType(),
+                null, null, new ColumnSegmentBoundInfo(new IdentifierValue(""), new IdentifierValue(""), new IdentifierValue("t_order"), new IdentifierValue("user_id")));
         SelectStatementContext leftSelectStatementContext = mock(SelectStatementContext.class, RETURNS_DEEP_STUBS);
         when(leftSelectStatementContext.getProjectionsContext().getExpandProjections()).thenReturn(Arrays.asList(orderIdColumn, userIdColumn));
-        ColumnProjection merchantIdColumn = new ColumnProjection("m", "merchant_id", null, new MySQLDatabaseType());
-        merchantIdColumn.setOriginalTable(new IdentifierValue("t_merchant"));
-        merchantIdColumn.setOriginalColumn(new IdentifierValue("merchant_id"));
-        ColumnProjection merchantNameColumn = new ColumnProjection("m", "merchant_name", null, new MySQLDatabaseType());
-        merchantNameColumn.setOriginalTable(new IdentifierValue("t_merchant"));
-        merchantNameColumn.setOriginalColumn(new IdentifierValue("merchant_name"));
+        ColumnProjection merchantIdColumn = new ColumnProjection(new IdentifierValue("m"), new IdentifierValue("merchant_id"), null, new MySQLDatabaseType(),
+                null, null, new ColumnSegmentBoundInfo(new IdentifierValue(""), new IdentifierValue(""), new IdentifierValue("t_merchant"), new IdentifierValue("merchant_id")));
+        ColumnProjection merchantNameColumn = new ColumnProjection(new IdentifierValue("m"), new IdentifierValue("merchant_name"), null, new MySQLDatabaseType(),
+                null, null, new ColumnSegmentBoundInfo(new IdentifierValue(""), new IdentifierValue(""), new IdentifierValue("t_merchant"), new IdentifierValue("merchant_name")));
         SelectStatementContext rightSelectStatementContext = mock(SelectStatementContext.class, RETURNS_DEEP_STUBS);
         when(rightSelectStatementContext.getProjectionsContext().getExpandProjections()).thenReturn(Arrays.asList(merchantIdColumn, merchantNameColumn));
         Map<Integer, SelectStatementContext> subqueryContexts = new LinkedHashMap<>(2, 1F);
@@ -86,8 +83,6 @@ class EncryptSelectProjectionSupportedCheckerTest {
         EncryptRule result = mock(EncryptRule.class, RETURNS_DEEP_STUBS);
         EncryptTable encryptTable1 = mock(EncryptTable.class);
         EncryptTable encryptTable2 = mock(EncryptTable.class);
-        when(encryptTable1.getLogicColumns()).thenReturn(Collections.singleton("mobile"));
-        when(encryptTable2.getLogicColumns()).thenReturn(Collections.singleton("mobile"));
         when(result.findEncryptTable("doctor")).thenReturn(Optional.of(encryptTable1));
         when(result.findEncryptTable("doctor1")).thenReturn(Optional.of(encryptTable2));
         when(encryptTable1.isEncryptColumn("mobile")).thenReturn(true);

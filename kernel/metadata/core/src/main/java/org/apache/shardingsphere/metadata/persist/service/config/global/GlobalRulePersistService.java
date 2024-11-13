@@ -57,7 +57,7 @@ public final class GlobalRulePersistService {
      * @return global rule configurations
      */
     public Collection<RuleConfiguration> load() {
-        return new RepositoryTupleSwapperEngine().swapToRuleConfigurations(repositoryTuplePersistService.loadRepositoryTuples(GlobalNode.getGlobalRuleRootNode()));
+        return new RepositoryTupleSwapperEngine().swapToRuleConfigurations(repositoryTuplePersistService.load(GlobalNode.getGlobalRuleRootNode()));
     }
     
     /**
@@ -67,7 +67,7 @@ public final class GlobalRulePersistService {
      * @return global rule configuration
      */
     public Optional<RuleConfiguration> load(final String ruleTypeName) {
-        return new RepositoryTupleSwapperEngine().swapToRuleConfiguration(ruleTypeName, repositoryTuplePersistService.loadRepositoryTuples(GlobalNode.getGlobalRuleNode(ruleTypeName)));
+        return new RepositoryTupleSwapperEngine().swapToRuleConfiguration(ruleTypeName, repositoryTuplePersistService.load(GlobalNode.getGlobalRuleNode(ruleTypeName)));
     }
     
     /**
@@ -79,10 +79,7 @@ public final class GlobalRulePersistService {
         Collection<MetaDataVersion> metaDataVersions = new LinkedList<>();
         RepositoryTupleSwapperEngine repositoryTupleSwapperEngine = new RepositoryTupleSwapperEngine();
         for (YamlRuleConfiguration each : new YamlRuleConfigurationSwapperEngine().swapToYamlRuleConfigurations(globalRuleConfigs)) {
-            Collection<RepositoryTuple> repositoryTuples = repositoryTupleSwapperEngine.swapToRepositoryTuples(each);
-            if (!repositoryTuples.isEmpty()) {
-                metaDataVersions.addAll(persistTuples(repositoryTuples));
-            }
+            metaDataVersions.addAll(persistTuples(repositoryTupleSwapperEngine.swapToRepositoryTuples(each)));
         }
         metaDataVersionPersistService.switchActiveVersion(metaDataVersions);
     }
@@ -90,7 +87,7 @@ public final class GlobalRulePersistService {
     private Collection<MetaDataVersion> persistTuples(final Collection<RepositoryTuple> repositoryTuples) {
         Collection<MetaDataVersion> result = new LinkedList<>();
         for (RepositoryTuple each : repositoryTuples) {
-            List<String> versions = repository.getChildrenKeys(GlobalNode.getGlobalRuleVersionsNode(each.getKey()));
+            List<String> versions = metaDataVersionPersistService.getVersions(GlobalNode.getGlobalRuleVersionsNode(each.getKey()));
             String nextActiveVersion = versions.isEmpty() ? MetaDataVersion.DEFAULT_VERSION : String.valueOf(Integer.parseInt(versions.get(0)) + 1);
             repository.persist(GlobalNode.getGlobalRuleVersionNode(each.getKey(), nextActiveVersion), each.getValue());
             if (Strings.isNullOrEmpty(repository.query(GlobalNode.getGlobalRuleActiveVersionNode(each.getKey())))) {
