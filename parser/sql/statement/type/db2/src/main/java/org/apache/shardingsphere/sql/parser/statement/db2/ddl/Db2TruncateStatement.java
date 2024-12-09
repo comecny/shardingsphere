@@ -15,16 +15,13 @@
  * limitations under the License.
  */
 
-grammar Db2Statement;
+package org.apache.shardingsphere.sql.parser.statement.db2.ddl;
 
-import Comments, DMLStatement, DDLStatement;
+import org.apache.shardingsphere.sql.parser.statement.core.statement.ddl.TruncateStatement;
+import org.apache.shardingsphere.sql.parser.statement.db2.Db2Statement;
 
-execute
-    : (select
-    | insert
-    | update
-    | delete
-    | truncateTable
-    ) (SEMI_ EOF? | EOF)
-    | EOF
-    ;
+/**
+ * db2 truncate table statement.
+ */
+public final class Db2TruncateStatement extends TruncateStatement implements Db2Statement {
+}

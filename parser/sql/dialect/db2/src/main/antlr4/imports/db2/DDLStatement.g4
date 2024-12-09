@@ -15,16 +15,21 @@
  * limitations under the License.
  */
 
-grammar Db2Statement;
+grammar DDLStatement;
 
-import Comments, DMLStatement, DDLStatement;
+import DMLStatement;
 
-execute
-    : (select
-    | insert
-    | update
-    | delete
-    | truncateTable
-    ) (SEMI_ EOF? | EOF)
-    | EOF
+truncationOption
+    : IGNORE DELETE TRIGGERS
+    | REUSE STORAGE
+    | DROP STORAGE
+    | IMMEDIATE
+    ;
+
+truncationStatement
+    : TRUNCATE TABLE tableName (truncationOption)*
+    ;
+
+truncation
+    : truncationStatement
     ;

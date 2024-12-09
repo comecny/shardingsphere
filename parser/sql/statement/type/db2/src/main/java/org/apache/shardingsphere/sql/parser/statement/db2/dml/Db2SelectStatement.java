@@ -11,12 +11,10 @@ import org.apache.shardingsphere.sql.parser.statement.db2.Db2Statement;
 import java.util.Optional;
 
 /**
- * db2 statement.
+ * db2 select statement.
  */
 @Setter
 public final class Db2SelectStatement extends SelectStatement implements Db2Statement {
-
-    private SimpleTableSegment table;
 
     private LimitSegment limit;
 
@@ -37,14 +35,5 @@ public final class Db2SelectStatement extends SelectStatement implements Db2Stat
     @Override
     public Optional<WindowSegment> getWindow() {
         return Optional.ofNullable(window);
-    }
-
-    /**
-     * Get simple table segment.
-     *
-     * @return simple table segment
-     */
-    public Optional<SimpleTableSegment> getTable() {
-        return Optional.ofNullable(table);
     }
 }

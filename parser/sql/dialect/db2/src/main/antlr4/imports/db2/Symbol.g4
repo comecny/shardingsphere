@@ -17,9 +17,6 @@
 
 lexer grammar Symbol;
 
-AND_:                'AND';
-OR_:                 'OR';
-NOT_:                'NOT';
 TILDE_:              '~';
 VERTICAL_BAR_:       '|';
 AMPERSAND_:          '&';

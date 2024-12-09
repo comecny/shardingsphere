@@ -31,7 +31,6 @@ literals
     | booleanLiterals
     | nullValueLiterals
     | intervalLiterals
-    | bindLiterals
     ;
 
 STRING_

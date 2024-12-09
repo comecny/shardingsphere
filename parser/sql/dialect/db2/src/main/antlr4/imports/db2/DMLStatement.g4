@@ -44,28 +44,27 @@ deleteStatement
     : DELETE FROM tableName (WHERE whereClause)? (CASCADE | RESTRICT)?
     ;
 
-multiTableDelete
-    : DELETE FROM LP_ selectStatement RP_ (WHERE whereClause)? (CASCADE | RESTRICT)?
-    ;
-
 deleteWithSubquery
     : DELETE FROM LP_ subquery RP_ (WHERE whereClause)? (CASCADE | RESTRICT)?
     ;
 
 delete
     : deleteStatement
-    | multiTableDelete
     | deleteWithSubquery
     ;
 
 condition
-    : columnName operator literalValue
+    : predicate
     | subqueryCondition
     | aggregateFunction operator value
     ;
 
+predicate
+    : columnName operator literals
+    ;
+
 whereClause
-    : condition (AND condition)*
+    : condition ( (AND | OR) condition)*
     ;
 
 operator
@@ -76,33 +75,17 @@ columnList
     : columnName (COMMA_ columnName)*
     ;
 
-truncationOption
-    : IGNORE DELETE TRIGGERS
-    | REUSE STORAGE
-    | DROP STORAGE
-    | IMMEDIATE
-    ;
-
-truncationStatement
-    : TRUNCATE TABLE tableName (truncationOption)*
-    ;
-
-truncation
-    : truncationStatement
-    ;
-
 selectStatement
-    : SELECT selectList fromClause? (WHERE whereClause)? (GROUP BY groupByClause)? (HAVING havingClause)? (ORDER BY orderByClause)?
+    : SELECT distinctSpecification?  selectList fromClause? (WHERE whereClause)? (GROUP BY groupByClause)? (HAVING havingClause)? (ORDER BY orderByClause)?
     ;
 
 fromClause
-    : FROM tableSource
+    : FROM tableSource (AS aliasName)?
     ;
 
 tableSource
-    : tableName
+    : tableName (joinClause)*
     | subquery
-    | tableName (joinClause)*
     ;
 
 joinClause
@@ -115,7 +98,7 @@ groupByClause
     ;
 
 havingClause
-    : aggregateFunction condition
+    : condition
     ;
 
 subquery
@@ -134,8 +117,12 @@ selectList
     | selectItem (COMMA_ selectItem)*
     ;
 
+distinctSpecification
+    :  DISTINCT
+    ;
+
 selectItem
-    : columnName (AS ID_)?
+    : columnName (AS aliasName)?
     | rowNumberFunction
     | subqueryField
     ;
@@ -199,6 +186,22 @@ setAssignmentsClause
 expression
     : literals
     | columnName
+    ;
+
+qualifiedShorthand
+    : (identifier DOT_)? identifier DOT_ ASTERISK_
+    ;
+
+projection
+    : columnName (AS? aliasName)? | qualifiedShorthand
+    ;
+
+projections
+    : (unqualifiedShorthand | projection) (COMMA_ projection)*
+    ;
+
+unqualifiedShorthand
+    : ASTERISK_
     ;
 
 updateStatement

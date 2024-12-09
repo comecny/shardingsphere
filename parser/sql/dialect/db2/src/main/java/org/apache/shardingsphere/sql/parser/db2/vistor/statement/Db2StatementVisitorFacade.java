@@ -1,6 +1,7 @@
 package org.apache.shardingsphere.sql.parser.db2.vistor.statement;
 
 import org.apache.shardingsphere.sql.parser.api.visitor.statement.type.*;
+import org.apache.shardingsphere.sql.parser.db2.vistor.statement.type.Db2DDLStatementVisitor;
 import org.apache.shardingsphere.sql.parser.db2.vistor.statement.type.Db2DMLStatementVisitor;
 import org.apache.shardingsphere.sql.parser.spi.SQLStatementVisitorFacade;
 
@@ -16,7 +17,7 @@ public final class Db2StatementVisitorFacade implements SQLStatementVisitorFacad
 
     @Override
     public Class<? extends DDLStatementVisitor> getDDLVisitorClass() {
-        throw new UnsupportedOperationException("");
+       return Db2DDLStatementVisitor.class;
     }
 
     @Override
